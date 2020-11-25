@@ -11,12 +11,14 @@ repositories {
     google()
     jcenter()
     mavenCentral()
+
 }
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.core:core-ktx:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("com.yandex.android:maps.mobile:4.0.0-lite")
 }
 android {
     compileSdkVersion(30)
