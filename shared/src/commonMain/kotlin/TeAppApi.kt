@@ -15,4 +15,6 @@ class TeAppApi(private val engine: HttpClientEngine) {
     companion object {
         private const val baseUrl = "https://teappp.herokuapp.com"
     }
+
+    data class TeaHouse(val title: String, val address: String)
 }
