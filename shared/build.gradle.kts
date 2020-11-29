@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlin-android-extensions")
+    id("kotlinx-serialization")
 }
 group = "com.github.vsbauer"
 version = "1.0-SNAPSHOT"
@@ -14,6 +15,7 @@ repositories {
     jcenter()
     mavenCentral()
 }
+
 kotlin {
     android()
     iosX64("ios") {
@@ -27,7 +29,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-cio:1.4.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.0.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.2.2")
+                implementation("io.ktor:ktor-client-json:1.2.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
             }
         }
         val commonTest by getting {
@@ -39,7 +44,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.3.2")
-                implementation("io.ktor:ktor-client-android:1.0.0")
+                implementation("io.ktor:ktor-client-json-jvm:1.2.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1")
             }
         }
