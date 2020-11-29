@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android-extensions")
+    kotlin("plugin.serialization") version "1.4.10"
 }
 group = "com.github.vsbauer"
 version = "1.0-SNAPSHOT"
@@ -17,6 +18,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.2.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 }
 android {
     compileSdkVersion(30)
