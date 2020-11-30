@@ -2,8 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android-extensions")
-    id("kotlinx-serialization")
-    kotlin("plugin.serialization")
+    kotlin("plugin.serialization") version "1.4.10"
 }
 group = "com.github.vsbauer"
 version = "1.0-SNAPSHOT"
@@ -13,13 +12,13 @@ repositories {
     google()
     jcenter()
     mavenCentral()
-    maven(url = "https://kotlin.bintray.com/kotlinx")
 }
 dependencies {
     implementation(project(":shared"))
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 }
 android {
     compileSdkVersion(30)
@@ -34,8 +33,5 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    packagingOptions {
-        exclude("META-INF/kotlinx-coroutines-core.kotlin_module")
     }
 }

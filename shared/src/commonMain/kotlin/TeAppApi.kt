@@ -1,13 +1,20 @@
+import data.TeaHouse
 import io.ktor.client.*
-import io.ktor.client.engine.*
+import io.ktor.client.features.json.*
 import io.ktor.client.request.*
-import kotlin.collections.get
+import io.ktor.util.*
 
-class TeAppApi(private val engine: HttpClientEngine) {
-    private val client = HttpClient()
+class TeAppApi() {
+    @KtorExperimentalAPI
+    private val client = HttpClient() {
+        install(JsonFeature) {
 
-    suspend fun allTeaHouses(): String {
-        return client.get<String> {
+        }
+    }
+
+    @KtorExperimentalAPI
+    suspend fun allTeaHouses(): List<TeaHouse> {
+        return client.get<List<TeaHouse>> {
             url("$baseUrl/api/teahouses/all")
         }
     }
@@ -15,6 +22,6 @@ class TeAppApi(private val engine: HttpClientEngine) {
     companion object {
         private const val baseUrl = "https://teappp.herokuapp.com"
     }
-
-    data class TeaHouse(val title: String, val address: String)
 }
+
+
