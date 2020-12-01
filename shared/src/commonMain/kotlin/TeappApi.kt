@@ -4,11 +4,13 @@ import io.ktor.client.features.json.*
 import io.ktor.client.request.*
 import io.ktor.util.*
 
-class TeAppApi() {
+class TeappApi() {
     @KtorExperimentalAPI
-    private val client = HttpClient() {
-        install(JsonFeature) {
-
+    private val client by lazy {
+        HttpClient {
+            install(JsonFeature) {
+                // serializer = KotlinxSerializer()  (problems with import)
+            }
         }
     }
 

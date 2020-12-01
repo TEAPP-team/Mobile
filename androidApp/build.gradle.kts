@@ -19,6 +19,11 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("io.ktor:ktor-client-json-jvm:1.2.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-native-mt-1.4.0-rc")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1")
+    implementation("io.ktor:ktor-client-json:1.2.2")
+    implementation("io.ktor:ktor-client-serialization:1.2.2")
 }
 android {
     compileSdkVersion(30)
@@ -32,6 +37,19 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+        }
+    }
+    android {
+        packagingOptions {
+            exclude("META-INF/DEPENDENCIES")
+            exclude ("META-INF/LICENSE")
+            exclude ("META-INF/LICENSE.txt")
+            exclude ("META-INF/license.txt")
+            exclude ("META-INF/NOTICE")
+            exclude ("META-INF/NOTICE.txt")
+            exclude ("META-INF/notice.txt")
+            exclude("META-INF/ASL2.0")
+            exclude("META-INF/*.kotlin_module")
         }
     }
 }

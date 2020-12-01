@@ -1,3 +1,5 @@
+import java.util.regex.Pattern.compile
+
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -15,4 +17,5 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven(url = "https://kotlin.bintray.com/kotlinx")
 }
