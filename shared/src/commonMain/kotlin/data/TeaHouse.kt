@@ -4,12 +4,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TeaHouse(
-    val title: String,
-    val address: String,
-    val coordinates: Coordinate,
-    val workTime: String,
-    val phone: String,
-    val site: String,
-    val links: List<Link>,
-    val id: Int
+    val address: String = "",
+    val coordinates: Coordinates = Coordinates(),
+    val id: Int = 0,
+    val links: List<Link>? = listOf(),
+    val phone: String = "",
+    val site: String? = "",
+    val title: String = "",
+    val workTime: WorkTimeX = WorkTimeX()
 )

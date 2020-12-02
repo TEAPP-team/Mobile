@@ -25,13 +25,12 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting {
+        commonMain{
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
                 implementation("io.ktor:ktor-client-core:1.4.0")
-                implementation("io.ktor:ktor-client-cio:1.4.0")
-                implementation("io.ktor:ktor-client-json:1.2.2")
-                implementation("io.ktor:ktor-client-serialization:1.2.2")
+                implementation("io.ktor:ktor-client-serialization:1.4.0")
+
             }
         }
         val commonTest by getting {
@@ -43,20 +42,14 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.3.2")
-                implementation("io.ktor:ktor-client-json-jvm:1.2.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-native-mt-1.4.0-rc")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1")
-                implementation("io.ktor:ktor-client-json:1.2.2")
-                implementation("io.ktor:ktor-client-serialization:1.2.2")
+                implementation("io.ktor:ktor-client-android:1.4.0")
             }
         }
-        val androidTest by getting
         val iosMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:1.4.0")
             }
         }
-        val iosTest by getting
     }
 }
 android {
