@@ -15,10 +15,11 @@ repositories {
 }
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.core:core-ktx:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
 }
 android {
     compileSdkVersion(30)
@@ -32,6 +33,19 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+        }
+    }
+    android {
+        packagingOptions {
+            exclude("META-INF/DEPENDENCIES")
+            exclude ("META-INF/LICENSE")
+            exclude ("META-INF/LICENSE.txt")
+            exclude ("META-INF/license.txt")
+            exclude ("META-INF/NOTICE")
+            exclude ("META-INF/NOTICE.txt")
+            exclude ("META-INF/notice.txt")
+            exclude("META-INF/ASL2.0")
+            exclude("META-INF/*.kotlin_module")
         }
     }
 }
