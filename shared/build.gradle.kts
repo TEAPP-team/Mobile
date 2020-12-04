@@ -25,12 +25,11 @@ kotlin {
         }
     }
     sourceSets {
-        commonMain{
+      commonMain{
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("io.ktor:ktor-client-serialization:1.4.0")
-
             }
         }
         val commonTest by getting {
