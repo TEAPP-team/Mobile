@@ -11,5 +11,5 @@ data class TeaHouse(
     val phone: String = "",
     val site: String? = "",
     val title: String = "",
-    val workTime: WorkTimeX = WorkTimeX()
+    val workTime: WorkTime = WorkTime()
 )
