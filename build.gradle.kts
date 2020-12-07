@@ -1,6 +1,7 @@
 import java.util.regex.Pattern.compile
 
 buildscript {
+    val kotlin_version by extra("1.4.20")
     repositories {
         gradlePluginPortal()
         jcenter()
