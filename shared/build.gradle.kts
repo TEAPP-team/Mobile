@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlin-android-extensions")
+    kotlin("plugin.serialization") version "1.4.10"
 }
 group = "com.github.vsbauer"
 version = "1.0-SNAPSHOT"
@@ -24,7 +25,13 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+      commonMain{
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+                implementation("io.ktor:ktor-client-core:1.4.0")
+                implementation("io.ktor:ktor-client-serialization:1.4.0")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -33,12 +40,15 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.core:core-ktx:1.2.0")
+                implementation("androidx.core:core-ktx:1.3.2")
+                implementation("io.ktor:ktor-client-android:1.4.0")
             }
         }
-        val androidTest by getting
-        val iosMain by getting
-        val iosTest by getting
+        val iosMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:1.4.0")
+            }
+        }
     }
 }
 android {

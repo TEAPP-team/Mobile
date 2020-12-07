@@ -1,3 +1,5 @@
+import java.util.regex.Pattern.compile
+
 buildscript {
     val kotlin_version by extra("1.4.20")
     repositories {
@@ -16,4 +18,5 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven(url = "https://kotlin.bintray.com/kotlinx")
 }

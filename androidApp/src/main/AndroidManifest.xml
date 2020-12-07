@@ -3,6 +3,10 @@
         package="com.github.vsbauer.teapp">
 
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
             android:allowBackup="true"
             android:fullBackupContent="true"
