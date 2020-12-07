@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.logo.Alignment
+import com.yandex.mapkit.logo.HorizontalAlignment
+import com.yandex.mapkit.logo.VerticalAlignment
 import com.yandex.mapkit.map.CameraPosition
 import kotlinx.android.synthetic.main.fragment_map.*
 
@@ -36,6 +39,9 @@ class MapFragment : Fragment() {
             CameraPosition(Point(59.93863, 30.31413), 11.0f, 0.0f, 0.0f),
             Animation(Animation.Type.SMOOTH, 0.toFloat()),
             null)
+        mapview.map.apply {
+            logo.setAlignment(Alignment(HorizontalAlignment.LEFT, VerticalAlignment.TOP))
+        }
     }
 
 
