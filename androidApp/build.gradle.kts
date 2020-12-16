@@ -29,6 +29,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.2.5")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     implementation("com.google.android.material:material:1.2.1")
+    implementation("com.airbnb.android:lottie:3.5.0")
 
 }
 android {
