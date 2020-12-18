@@ -3,13 +3,13 @@
     <item android:id="@+id/menu_map"
         android:enabled="true"
         android:title="@string/menu_map"
-        android:icon="@drawable/googleg_standard_color_18"/>
+        android:icon="@drawable/selector_ic_map"/>
     <item android:id="@+id/menu_list"
         android:title="@string/menu_list"
         android:enabled="true"
-        android:icon="@drawable/googleg_standard_color_18"/>
+        android:icon="@drawable/ic_list"/>
     <item android:id="@+id/menu_saved"
         android:title="@string/menu_saved"
         android:enabled="true"
-        android:icon="@drawable/googleg_standard_color_18"/>
+        android:icon="@drawable/ic_favourites"/>
 </menu>
