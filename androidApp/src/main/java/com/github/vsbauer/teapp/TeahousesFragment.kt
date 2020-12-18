@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.UiThread
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -50,16 +51,19 @@ class TeahousesFragment : Fragment() {
             Log.d("loglistener", teahouse.name) // потом жмакать будем
         }
 
-        val api = TeappApi()
-        CoroutineScope(Dispatchers.IO).launch {
-            val res = api.allTeaHouses()
-            res.forEach {
-                Log.d("logcoroutine", it.title)
-                activity?.runOnUiThread {
-                    adapter.add(TeahouseItem(it.title)) // загрузка в адаптер
-                }
-            }
+        resTeahouses.forEach {
+            adapter.add(TeahouseItem(it.title))
         }
+//        val api = TeappApi()
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val res = api.allTeaHouses()
+//            res.forEach {
+//                Log.d("logcoroutine", it.title)
+//                activity?.runOnUiThread {
+//                    adapter.add(TeahouseItem(it.title)) // загрузка в адаптер
+//                }
+//            }
+//        }
 
     }
     class TeahouseItem(val name : String) : Item<GroupieViewHolder>(){
