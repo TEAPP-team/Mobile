@@ -31,6 +31,7 @@ dependencies {
     implementation("com.google.android.material:material:1.2.1")
     implementation("com.github.terrakok:cicerone:6.6")
     implementation("com.xwray:groupie:2.8.1")
+    implementation("com.airbnb.android:lottie:3.5.0")
 
 }
 android {
