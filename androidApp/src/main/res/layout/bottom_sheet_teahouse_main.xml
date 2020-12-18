@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:id="@+id/bottomSheetTeahouse"
+    android:clickable="true"
+    android:focusable="true"
+    android:elevation="8dp"
+    android:paddingBottom="?attr/actionBarSize"
+    android:background="@drawable/rounded_bottom_sheet_teahouse_main"
+    android:orientation="vertical"
+    app:behavior_peekHeight="0dp"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="48dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_view_handle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_teahouse_title"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="47dp"
+        android:maxLines="2"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Coffeshop на васильеостровской стрелке"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_teahouse_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="5.0"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_leaf"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="49dp"
+        android:src="@drawable/ic_leaf"
+        app:layout_constraintStart_toEndOf="@+id/textView_teahouse_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_bookmark"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/ic_bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_teahouse_address"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Московский пр-т, 216, Санкт-Петербург, 196066"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_teahouse_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>
