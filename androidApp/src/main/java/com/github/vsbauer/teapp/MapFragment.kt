@@ -39,14 +39,6 @@ lateinit var textViewScore : TextView
 
 class MapFragment : Fragment() {
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,20 +63,6 @@ class MapFragment : Fragment() {
         resTeahouses.forEach {
             addPointsOnMap(it)
         }
-//        val api = TeappApi()
-//        CoroutineScope(Dispatchers.IO).launch {
-//
-//            res = api.allTeaHouses()
-//
-//            res.forEach {
-//
-//                activity?.runOnUiThread { // расставляем маркеры
-//                    addPointsOnMap(it)
-//                }
-//
-//
-//            }
-//        }
 
         mapview.map.move(camPos, Animation(Animation.Type.SMOOTH, 0.toFloat()), null) // при запуске активити возвращаемся на предыдущее запомненное положение
 

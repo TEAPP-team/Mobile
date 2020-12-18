@@ -23,11 +23,6 @@ import kotlinx.coroutines.launch
 class TeahousesFragment : Fragment() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,16 +49,6 @@ class TeahousesFragment : Fragment() {
         resTeahouses.forEach {
             adapter.add(TeahouseItem(it.title))
         }
-//        val api = TeappApi()
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val res = api.allTeaHouses()
-//            res.forEach {
-//                Log.d("logcoroutine", it.title)
-//                activity?.runOnUiThread {
-//                    adapter.add(TeahouseItem(it.title)) // загрузка в адаптер
-//                }
-//            }
-//        }
 
     }
     class TeahouseItem(val name : String) : Item<GroupieViewHolder>(){
