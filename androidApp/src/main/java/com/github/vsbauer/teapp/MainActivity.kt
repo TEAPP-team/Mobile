@@ -21,10 +21,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.invoke.ConstantCallSite
 
-lateinit var bottomsheet : BottomSheetBehavior<ConstraintLayout>
-lateinit var resTeahouses : List<TeaHouse>
+lateinit var bottomsheet: BottomSheetBehavior<ConstraintLayout>
+lateinit var resTeahouses: List<TeaHouse>
 
-class   MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,22 +41,24 @@ class   MainActivity : AppCompatActivity(){
 
     }
 
-    private fun setItemSelectedListener(){
+    private fun setItemSelectedListener() {
         mainBottomNavigationView.setOnNavigationItemSelectedListener { item ->
             val manager = supportFragmentManager
-            when(item.itemId){
+            when (item.itemId) {
 
                 R.id.menu_map -> {
                     manager.beginTransaction().replace(R.id.mainContainer, Screens.Map()).commit()
                     true
                 }
                 R.id.menu_list -> {
-                    manager.beginTransaction().replace(R.id.mainContainer, Screens.Teahouses()).commit()
+                    manager.beginTransaction().replace(R.id.mainContainer, Screens.Teahouses())
+                        .commit()
                     bottomsheet.state = BottomSheetBehavior.STATE_COLLAPSED
                     true
                 }
                 R.id.menu_saved -> {
-                    manager.beginTransaction().replace(R.id.mainContainer, Screens.Favourites()).commit()
+                    manager.beginTransaction().replace(R.id.mainContainer, Screens.Favourites())
+                        .commit()
                     true
                 }
                 else -> false
@@ -66,25 +68,27 @@ class   MainActivity : AppCompatActivity(){
         }
     }
 
-    private fun fetchTeahouses(){
+    private fun fetchTeahouses() {
         val api = TeappApi()
         CoroutineScope(Dispatchers.IO).launch {
             resTeahouses = api.allTeaHouses()
-            runOnUiThread{
-                supportFragmentManager.beginTransaction().replace(R.id.mainContainer, Screens.Map()).commit() // запускаем карту только после подгрузки, чтобы не произошел вылет при расстановке маркеров
+            runOnUiThread {
+                supportFragmentManager.beginTransaction().replace(R.id.mainContainer, Screens.Map())
+                    .commit() // запускаем карту только после подгрузки, чтобы не произошел вылет при расстановке маркеров
                 hideSplashscreen()
             }
         }
     }
-    private fun hideSplashscreen(){
-        val animationFadeContainerSplashscreen = splashscreenContainer.animate().alpha(0f).setDuration(1000)
+
+    private fun hideSplashscreen() {
+        val animationFadeContainerSplashscreen =
+            splashscreenContainer.animate().alpha(0f).setDuration(1000)
         animationFadeContainerSplashscreen.start()
         animationFadeContainerSplashscreen.setUpdateListener {
-            if (it.currentPlayTime >= it.duration){
+            if (it.currentPlayTime >= it.duration) {
                 splashscreenContainer.visibility = View.GONE
             }
         }
     }
-
 }
 
