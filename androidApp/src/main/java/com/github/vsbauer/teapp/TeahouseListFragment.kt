@@ -13,48 +13,40 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import data.TeaHouse
-import kotlinx.android.synthetic.main.fragment_teahouses.*
+import kotlinx.android.synthetic.main.teahouse_list.*
 import kotlinx.android.synthetic.main.item_teahouse.view.*
+import kotlinx.android.synthetic.main.teahouse_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class TeahousesFragment : Fragment() {
-
-
+class TeahouseListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_teahouses, container, false)
+        return inflater.inflate(R.layout.teahouse_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getData()
 
-    }
-    fun getData(){
-
-        val adapter = GroupAdapter<GroupieViewHolder>()
-        teahousesRecyclerView.adapter = adapter
-
-        adapter.setOnItemClickListener { item, view ->
-            val teahouse = item as TeahouseItem
-            Log.d("loglistener", teahouse.name) // потом жмакать будем
+        teahouseListSwipeRefresh.setOnRefreshListener {
+            teahouseListSwipeRefresh.isRefreshing = false
+            Toast.makeText(requireActivity().applicationContext,
+                "List Updated", Toast.LENGTH_SHORT)
+                .show()
         }
-
-        resTeahouses.forEach {
-            adapter.add(TeahouseItem(it.title))
-        }
-
     }
-    class TeahouseItem(val name : String) : Item<GroupieViewHolder>(){
-        override fun getLayout() = R.layout.item_teahouse
-        override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-            viewHolder.itemView.teahouse_name.text = name
+
+    private fun getData() {
+        resTeahouses.forEach { _ ->
+            val newTeahouse = LayoutInflater.from(requireActivity().applicationContext)
+                .inflate(R.layout.item_teahouse, null, false)
+            teahouseListLayout.addView(newTeahouse)
+            newTeahouse.setOnClickListener {}
         }
     }
 }
