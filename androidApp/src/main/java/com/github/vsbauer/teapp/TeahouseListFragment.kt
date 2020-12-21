@@ -1,20 +1,17 @@
 package com.github.vsbauer.teapp
 
-import TeappApi
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.UiThread
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
 import data.TeaHouse
-import kotlinx.android.synthetic.main.teahouse_list.*
-import kotlinx.android.synthetic.main.item_teahouse.view.*
 import kotlinx.android.synthetic.main.teahouse_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,22 +28,57 @@ class TeahouseListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getData()
+        progressBar.visibility = View.VISIBLE
+        updateData(0)
 
         teahouseListSwipeRefresh.setOnRefreshListener {
-            teahouseListSwipeRefresh.isRefreshing = false
-            Toast.makeText(requireActivity().applicationContext,
-                "List Updated", Toast.LENGTH_SHORT)
-                .show()
+//            Toast.makeText(
+//                requireActivity().applicationContext,
+//                "List Updated", Toast.LENGTH_SHORT
+//            ).show()
+            progressBar.visibility = View.VISIBLE
+            updateData(100)
         }
     }
 
-    private fun getData() {
-        resTeahouses.forEach { _ ->
-            val newTeahouse = LayoutInflater.from(requireActivity().applicationContext)
-                .inflate(R.layout.item_teahouse, null, false)
-            teahouseListLayout.addView(newTeahouse)
-            newTeahouse.setOnClickListener {}
+    private fun updateData(delay: Int = 0) {
+        teahouseListLayout.removeAllViews()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val teahouseList = (activity as MainActivity).getTeahouseList().shuffled()
+
+            activity?.runOnUiThread {
+                teahouseListSwipeRefresh.isRefreshing = false
+                progressBar.visibility = View.GONE
+
+                var index: Long = 0
+
+                teahouseList.forEach { it ->
+                    val newTeahouse = LayoutInflater.from(requireActivity().applicationContext)
+                        .inflate(R.layout.item_teahouse, null, false)
+                    newTeahouse.findViewWithTag<TextView>("name").text = it.title
+                    newTeahouse.findViewWithTag<TextView>("address").text = it.address
+
+                    newTeahouse.findViewWithTag<TextView>("")
+
+                    newTeahouse.findViewWithTag<Button>("favourite").setOnClickListener {
+                        it.setBackgroundResource(R.drawable.ic_favourites)
+                    }
+
+                    Handler().postDelayed(
+                        { teahouseListLayout?.addView(newTeahouse) }, index * delay
+                    )
+                    newTeahouse.setOnClickListener {
+                        startActivity(
+                            Intent(
+                                requireActivity().applicationContext,
+                                TeahousePageActivity::class.java
+                            )
+                        )
+                    }
+                    index += 1
+                }
+            }
         }
     }
 }

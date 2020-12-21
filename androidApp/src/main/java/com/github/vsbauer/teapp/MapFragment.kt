@@ -1,8 +1,7 @@
 package com.github.vsbauer.teapp
 
-import TeappApi
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +17,10 @@ import com.yandex.mapkit.logo.HorizontalAlignment
 import com.yandex.mapkit.logo.VerticalAlignment
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectTapListener
-import com.yandex.runtime.Runtime.getApplicationContext
 import com.yandex.runtime.image.ImageProvider
 import data.TeaHouse
 import kotlinx.android.synthetic.main.bottom_sheet_teahouse_main.*
 import kotlinx.android.synthetic.main.fragment_map.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 var camPos = CameraPosition(Point(59.93863, 30.31413), 11.0f, 0.0f, 0.0f) // изначальное положение карты на СПб
@@ -65,7 +60,6 @@ class MapFragment : Fragment() {
         }
 
         mapview.map.move(camPos, Animation(Animation.Type.SMOOTH, 0.toFloat()), null) // при запуске активити возвращаемся на предыдущее запомненное положение
-
     }
 
     private val eMapObjectTapListener =
@@ -75,7 +69,6 @@ class MapFragment : Fragment() {
                 bottomSheet.state = BottomSheetBehavior.STATE_EXPANDED
                 textViewAddress.text = teahouseData.address
                 textViewTitle.text = teahouseData.title
-                Log.d("checkclick", teahouseData.address)
             }
             true
         } // искренне тупая система отслеживания клика, но работает
