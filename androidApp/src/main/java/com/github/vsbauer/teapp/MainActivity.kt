@@ -2,6 +2,7 @@ package com.github.vsbauer.teapp
 
 
 import TeappApi
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,22 @@ class MainActivity : AppCompatActivity() {
 
         setItemSelectedListener()
 
+        favouriteButton.setOnClickListener {
+            it.setBackgroundResource(R.drawable.ic_favourites)
+        }
+        openButton.setOnClickListener {
+            startActivity(
+                Intent(
+                    applicationContext,
+                    TeahousePageActivity::class.java
+                )
+            )
+        }
+    }
 
+    suspend fun getTeahouseList(): List<TeaHouse> {
+        val api = TeappApi()
+        return api.allTeaHouses()
     }
 
     private fun setItemSelectedListener() {
@@ -41,18 +57,23 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.menu_map -> {
-                    manager.beginTransaction().replace(R.id.mainContainer, Screens.MapScreen).commit()
+                    manager.beginTransaction().replace(R.id.mainContainer, Screens.MapScreen)
+                        .commit()
+                    header.text = "Чайные на карте"
                     true
                 }
                 R.id.menu_list -> {
-                    manager.beginTransaction().replace(R.id.mainContainer, Screens.TeahouseListScreen)
+                    manager.beginTransaction()
+                        .replace(R.id.mainContainer, Screens.TeahouseListScreen)
                         .commit()
                     bottomsheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                    header.text = "Ближайшие заведения"
                     true
                 }
                 R.id.menu_saved -> {
                     manager.beginTransaction().replace(R.id.mainContainer, Screens.FavouriteScreen)
                         .commit()
+                    header.text = "Избранное"
                     true
                 }
                 else -> false
@@ -67,7 +88,8 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             resTeahouses = api.allTeaHouses()
             runOnUiThread {
-                supportFragmentManager.beginTransaction().replace(R.id.mainContainer, Screens.MapScreen)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainContainer, Screens.MapScreen)
                     .commit() // запускаем карту только после подгрузки, чтобы не произошел вылет при расстановке маркеров
                 hideSplashscreen()
             }
