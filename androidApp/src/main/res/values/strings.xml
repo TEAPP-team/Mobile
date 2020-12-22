@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TeApp</string>
     <string name="menu_map">Карта</string>
-    <string name="menu_list">Близжайшие заведения</string>
+    <string name="menu_list">Ближайшие заведения</string>
     <string name="menu_saved">Избранное</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

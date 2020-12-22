@@ -1,7 +1,12 @@
 package com.github.vsbauer.teapp
 
 object Screens {
-    fun Map() = MapFragment()
-    fun Teahouses() = TeahousesFragment()
-    fun Favourites() = FavouritesFragment()
+    val MapScreen
+        get() = MapFragment()
+
+    val TeahouseListScreen
+        get() = TeahouseListFragment()
+
+    val FavouriteScreen
+        get() = FavouritesFragment()
 }
