@@ -32,7 +32,8 @@
         app:elevation="12dp"
         app:itemIconSize="28dp"
         app:itemIconTint="@drawable/tab_color"
-        app:labelVisibilityMode="unlabeled"
+        app:itemTextColor="@drawable/tab_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation_menu" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
