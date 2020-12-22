@@ -8,10 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
-import data.TeaHouse
 import kotlinx.android.synthetic.main.teahouse_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -69,12 +66,14 @@ class TeahouseListFragment : Fragment() {
                         { teahouseListLayout?.addView(newTeahouse) }, index * delay
                     )
                     newTeahouse.setOnClickListener {
-                        startActivity(
-                            Intent(
-                                requireActivity().applicationContext,
-                                TeahousePageActivity::class.java
-                            )
+                        val teahouseIntent = Intent(
+                            requireActivity().applicationContext,
+                            TeahousePageActivity::class.java
                         )
+
+                        teahouseIntent.putExtra("TeahouseData", it.toString())
+
+                        startActivity(teahouseIntent)
                     }
                     index += 1
                 }

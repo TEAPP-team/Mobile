@@ -46,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    public fun addToFavourites(teahouse: TeaHouse) {
+
+    }
+
     suspend fun getTeahouseList(): List<TeaHouse> {
         val api = TeappApi()
         return api.allTeaHouses()
@@ -106,5 +110,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }
 
